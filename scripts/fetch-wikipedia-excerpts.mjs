@@ -1,0 +1,147 @@
+/**
+ * Fetches Wikipedia summary excerpts for all event links and writes them to
+ * data/wikipedia-excerpts.ts.  Run with:  node scripts/fetch-wikipedia-excerpts.mjs
+ */
+
+import { writeFileSync } from "fs";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+// All unique Wikipedia links used in data/events.ts
+const LINKS = [
+  "https://en.wikipedia.org/wiki/Antikythera_mechanism",
+  "https://en.wikipedia.org/wiki/Pascal%27s_calculator",
+  "https://en.wikipedia.org/wiki/Mechanical_Turk",
+  "https://en.wikipedia.org/wiki/Jacquard_machine",
+  "https://en.wikipedia.org/wiki/Luddite",
+  "https://en.wikipedia.org/wiki/Frame-Breaking_Act",
+  "https://en.wikipedia.org/wiki/Stephenson%27s_Rocket",
+  "https://en.wikipedia.org/wiki/Electrical_telegraph",
+  "https://en.wikipedia.org/wiki/Tabulating_machine",
+  "https://en.wikipedia.org/wiki/ENIAC",
+  "https://en.wikipedia.org/wiki/Soroban",
+  "https://en.wikipedia.org/wiki/IBM_700/7000_series",
+  "https://en.wikipedia.org/wiki/Pocket_calculator",
+  "https://en.wikipedia.org/wiki/Chinook_(draughts_player)",
+  "https://en.wikipedia.org/wiki/Deep_Blue_versus_Kasparov,_1996",
+  "https://en.wikipedia.org/wiki/Deep_Blue_versus_Kasparov,_1997",
+  "https://en.wikipedia.org/wiki/Shazam_Entertainment",
+  "https://en.wikipedia.org/wiki/CAPTCHA",
+  "https://en.wikipedia.org/wiki/DARPA_Grand_Challenge_(2004)",
+  "https://en.wikipedia.org/wiki/Advanced_Chess",
+  "https://en.wikipedia.org/wiki/Draughts",
+  "https://en.wikipedia.org/wiki/Watson_(computer)",
+  "https://en.wikipedia.org/wiki/ImageNet",
+  "https://en.wikipedia.org/wiki/Google_Translate",
+  "https://en.wikipedia.org/wiki/Residual_neural_network",
+  "https://en.wikipedia.org/wiki/AlphaGo_versus_Lee_Sedol",
+  "https://en.wikipedia.org/wiki/Stockfish_(chess)",
+  "https://en.wikipedia.org/wiki/AlphaZero",
+  "https://en.wikipedia.org/wiki/Libratus",
+  "https://en.wikipedia.org/wiki/Artificial_intelligence_in_healthcare",
+  "https://en.wikipedia.org/wiki/OpenAI_Five",
+  "https://en.wikipedia.org/wiki/AlphaStar_(software)",
+  "https://en.wikipedia.org/wiki/GPT-3",
+  "https://en.wikipedia.org/wiki/Midjourney",
+  "https://en.wikipedia.org/wiki/Riffusion",
+  "https://en.wikipedia.org/wiki/ChatGPT",
+  "https://en.wikipedia.org/wiki/Bar_examination",
+  "https://en.wikipedia.org/wiki/GPT-4",
+  "https://en.wikipedia.org/wiki/Mata_v._Avianca,_Inc.",
+  "https://en.wikipedia.org/wiki/2023_Writers_Guild_of_America_strike",
+  "https://en.wikipedia.org/wiki/Geoffrey_Hinton",
+  "https://en.wikipedia.org/wiki/Artificial_Intelligence_Act",
+  "https://en.wikipedia.org/wiki/AI_Safety_Summit",
+  "https://en.wikipedia.org/wiki/AlphaFold",
+  "https://en.wikipedia.org/wiki/AlphaProof",
+  "https://en.wikipedia.org/wiki/Automated_theorem_proving",
+  "https://en.wikipedia.org/wiki/2024_Nobel_Prize_in_Physics",
+  "https://en.wikipedia.org/wiki/GitHub_Copilot",
+  "https://en.wikipedia.org/wiki/Intelligent_agent",
+];
+
+// Fallback article titles for URLs whose titles don't resolve via the summary API
+const FALLBACK_TITLES = {
+  "https://en.wikipedia.org/wiki/Deep_Blue_versus_Kasparov,_1996": "Deep_Blue_versus_Garry_Kasparov",
+  "https://en.wikipedia.org/wiki/Deep_Blue_versus_Kasparov,_1997": "Deep_Blue_versus_Garry_Kasparov",
+  "https://en.wikipedia.org/wiki/AlphaProof": "International_Mathematical_Olympiad",
+  "https://en.wikipedia.org/wiki/2024_Nobel_Prize_in_Physics": "Demis_Hassabis",
+};
+
+function titleFromUrl(url) {
+  return decodeURIComponent(url.replace("https://en.wikipedia.org/wiki/", ""));
+}
+
+async function fetchSummary(url) {
+  const title = FALLBACK_TITLES[url] ?? titleFromUrl(url);
+  const apiUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`;
+  const res = await fetch(apiUrl, {
+    headers: { "User-Agent": "ai-vs-humans-timeline/1.0 (educational; contact via github)" },
+  });
+  if (!res.ok) throw new Error(`HTTP ${res.status} for ${title}`);
+  const data = await res.json();
+  return {
+    title: data.title ?? title,
+    extract: data.extract ?? "",
+    thumbnail: data.thumbnail?.source ?? null,
+    url,
+  };
+}
+
+// Fetch with concurrency limit of 4
+async function fetchAll(links, concurrency = 4) {
+  const results = {};
+  let i = 0;
+  async function worker() {
+    while (i < links.length) {
+      const link = links[i++];
+      try {
+        process.stdout.write(`  fetching ${titleFromUrl(link)}…\n`);
+        results[link] = await fetchSummary(link);
+      } catch (e) {
+        console.error(`  ERROR ${link}: ${e.message}`);
+        results[link] = null;
+      }
+    }
+  }
+  await Promise.all(Array.from({ length: concurrency }, worker));
+  return results;
+}
+
+console.log("Fetching Wikipedia summaries…");
+const excerpts = await fetchAll(LINKS);
+
+// Build TS source
+const entries = Object.entries(excerpts)
+  .filter(([, v]) => v !== null)
+  .map(([url, v]) => {
+    const escaped = (s) => (s ?? "").replace(/\\/g, "\\\\").replace(/`/g, "\\`").replace(/\$/g, "\\$");
+    return `  ${JSON.stringify(url)}: {
+    title: \`${escaped(v.title)}\`,
+    extract: \`${escaped(v.extract)}\`,
+    thumbnail: ${v.thumbnail ? `\`${escaped(v.thumbnail)}\`` : "undefined"},
+    url: \`${escaped(v.url)}\`,
+  }`;
+  })
+  .join(",\n");
+
+const ts = `// AUTO-GENERATED by scripts/fetch-wikipedia-excerpts.mjs — do not edit by hand.
+// Re-run the script to refresh.  Sourced from Wikipedia (CC BY-SA 4.0).
+
+export interface WikipediaExcerpt {
+  title: string;
+  extract: string;
+  thumbnail?: string;
+  url: string;
+}
+
+export const wikipediaExcerpts: Record<string, WikipediaExcerpt> = {
+${entries},
+};
+`;
+
+const out = join(__dirname, "../data/wikipedia-excerpts.ts");
+writeFileSync(out, ts, "utf8");
+console.log(`\nWrote ${Object.keys(excerpts).filter(k => excerpts[k]).length} excerpts to data/wikipedia-excerpts.ts`);

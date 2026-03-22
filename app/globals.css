@@ -1,26 +1,658 @@
-@import "tailwindcss";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --bg: #0d0d0d;
+  --machine: #cc2200;
+  --human: #1a66cc;
+  --superhuman: #ffd700;
+  --spine: #ffd700;
+  --text: #e8e8e8;
+  --text-dim: #999;
+  --card-bg: #1a1a1a;
+  --card-border: #2a2a2a;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Computer Modern', Georgia, serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── HEADER ── */
+header {
+  background: linear-gradient(180deg, #1a0000 0%, #0d0d0d 100%);
+  border-bottom: 2px solid var(--spine);
+  padding: 3rem 1rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 215, 0, 0.03) 2px,
+    rgba(255, 215, 0, 0.03) 4px
+  );
+  pointer-events: none;
+}
+
+header h1 {
+  font-size: clamp(1.8rem, 5vw, 3.5rem);
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text);
+  text-shadow: 0 0 40px rgba(204, 34, 0, 0.6), 0 0 80px rgba(204, 34, 0, 0.3);
+  margin-bottom: 0.5rem;
+}
+
+header .subtitle {
+  color: var(--text-dim);
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+/* ── FACTION FLAGS ── */
+.faction-flag {
+  position: absolute;
+  top: -8px;
+  width: 52px;
+  height: auto;
+  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.7));
+}
+
+.faction-flag-machine {
+  left: 2.5rem;
+}
+
+.faction-flag-human {
+  right: 2.5rem;
+}
+
+@media (max-width: 700px) {
+  .faction-flag {
+    width: 36px;
+  }
+
+  .faction-flag-machine {
+    left: 0.75rem;
+  }
+
+  .faction-flag-human {
+    right: 0.75rem;
+  }
+}
+
+/* ── SCORE COUNTER ── */
+.score-counter {
+  display: inline-flex;
+  gap: 0;
+  border: 1px solid var(--spine);
+  border-radius: 4px;
+  overflow: hidden;
+  font-family: 'Computer Modern', Georgia, serif;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+}
+
+.score-machine {
+  background: rgba(204, 34, 0, 0.2);
+  border-right: 1px solid var(--spine);
+  padding: 0.5rem 1.5rem;
+  color: #ff6644;
+}
+
+.score-human {
+  background: rgba(26, 102, 204, 0.2);
+  padding: 0.5rem 1.5rem;
+  color: #66aaff;
+}
+
+.score-machine .count,
+.score-human .count {
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: block;
+  line-height: 1;
+}
+
+/* ── FILTERS ── */
+.filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 2rem 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(13, 13, 13, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #222;
+}
+
+.filter-btn {
+  background: transparent;
+  border: 1px solid #444;
+  color: var(--text-dim);
+  padding: 0.4rem 1.2rem;
+  border-radius: 2px;
+  cursor: pointer;
+  font-family: 'Computer Modern', Georgia, serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+
+.filter-btn:hover {
+  border-color: var(--spine);
+  color: var(--spine);
+}
+
+.filter-btn.active {
+  background: var(--spine);
+  border-color: var(--spine);
+  color: #000;
+  font-weight: 700;
+}
+
+/* ── TIMELINE CONTAINER ── */
+.timeline {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+}
+
+/* Vertical spine */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, transparent, var(--spine) 5%, var(--spine) 95%, transparent);
+  transform: translateX(-50%);
+}
+
+/* ── ERA DIVIDER ── */
+.era-divider {
+  position: relative;
+  text-align: center;
+  margin: 3rem 0 2rem;
+  z-index: 1;
+}
+
+.era-divider::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #444, transparent);
+}
+
+.era-divider span {
+  position: relative;
+  display: inline-block;
+  background: var(--bg);
+  padding: 0.4rem 1.5rem;
+  border: 1px solid #444;
+  font-family: 'Computer Modern', Georgia, serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.era-image {
+  display: block;
+  width: 100vw;
+  height: 220px;
+  object-fit: cover;
+  object-position: center center;
+  margin-left: calc(50% - 50vw);
+  margin-bottom: 2rem;
+  filter: grayscale(40%) brightness(0.6) sepia(20%);
+}
+
+/* ── EVENT CARD ── */
+.event {
+  position: relative;
+  width: 44%;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.event.left {
+  margin-left: 0;
+  margin-right: auto;
+  transform: translateX(-40px);
+}
+
+.event.right {
+  margin-left: auto;
+  margin-right: 0;
+  transform: translateX(40px);
+}
+
+.event.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Dot on spine — injected by JS as a direct child of .timeline so that
+   left: calc(50% - 6px) shares the exact same containing-block reference
+   as the spine's own left: 50%.  No percentage chain through event width. */
+.spine-dot {
+  position: absolute;
+  left: calc(50% - 6px);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--spine);
+  background: var(--bg);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.spine-dot.hidden {
+  display: none;
+}
+
+/* Connector line: card edge → dot edge.
+   left/right: 100% anchors one edge exactly at the card boundary. */
+.event::before {
+  content: '';
+  position: absolute;
+  top: calc(1.5rem + 5px);
+  height: 2px;
+  background: #333;
+  width: calc(13.64% - 6px);
+  z-index: 1;
+}
+
+.event.left::before {
+  left: 100%;
+  right: auto;
+}
+
+.event.right::before {
+  right: 100%;
+  left: auto;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 3px;
+  padding: 1.2rem 1.4rem;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.event.machine .card {
+  border-left: 3px solid var(--machine);
+}
+
+.event.human .card {
+  border-left: 3px solid var(--human);
+}
+
+.card:hover {
+  transform: scale(1.02);
+  z-index: 2;
+}
+
+.event.machine .card:hover {
+  border-color: var(--machine);
+  box-shadow: 0 0 20px rgba(204, 34, 0, 0.3), 0 0 40px rgba(204, 34, 0, 0.1);
+}
+
+.event.human .card:hover {
+  border-color: var(--human);
+  box-shadow: 0 0 20px rgba(26, 102, 204, 0.3), 0 0 40px rgba(26, 102, 204, 0.1);
+}
+
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.card-year {
+  display: none;
+}
+
+/* ── SPINE YEAR LABEL ──
+   Positioned relative to .event; placed just outside the dot on the far
+   side of the spine from the card.
+   Left events  → year appears to the RIGHT of the dot
+   Right events → year appears to the LEFT of the dot
+
+   Spine is 13.64% of event-width past the event edge.
+   Dot radius = 6px.  Year left/right edge starts 6px past the dot edge. */
+.spine-year {
+  position: absolute;
+  top: calc(1.5rem + 6px);          /* dot centre */
+  transform: translateY(-50%);
+  font-family: 'Computer Modern', Georgia, serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--spine);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.event.left .spine-year {
+  /* Left edge = dot right edge + 6px gap */
+  left: calc(100% + 13.64% + 18px);
+}
+
+.event.right .spine-year {
+  /* Right edge = dot left edge - 6px gap */
+  right: calc(100% + 13.64% + 18px);
+}
+
+.card-badges {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.badge-type {
+  font-family: 'Computer Modern', Georgia, serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  border-radius: 2px;
+}
+
+.event.machine .badge-type {
+  background: rgba(204, 34, 0, 0.2);
+  color: #ff6644;
+  border: 1px solid rgba(204, 34, 0, 0.4);
+}
+
+.event.human .badge-type {
+  background: rgba(26, 102, 204, 0.2);
+  color: #66aaff;
+  border: 1px solid rgba(26, 102, 204, 0.4);
+}
+
+.badge-superhuman {
+  font-size: 1rem;
+  line-height: 1;
+  filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.5));
+}
+
+.card-text {
+  font-size: 0.92rem;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.card-image-wrap {
+  position: relative;
+  width: calc(100% + 2.8rem);
+  margin: 0.6rem -1.4rem 0.8rem;
+  height: 180px;
+  overflow: hidden;
+}
+
+.card-image-bg {
+  position: absolute;
+  inset: -20px;
+  width: calc(100% + 40px);
+  height: calc(100% + 40px);
+  object-fit: cover;
+  object-position: center;
+  filter: blur(16px) brightness(0.45) saturate(1.2);
+  z-index: 0;
+}
+
+.card-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  object-position: center;
+  filter: contrast(1.05);
+  background: transparent;
+  z-index: 1;
+}
+
+.card-image-wrap.inverted .card-image {
+  filter: invert(1) contrast(1.05);
+}
+
+.card-image-wrap.inverted .card-image-bg {
+  filter: invert(1) blur(16px) brightness(0.45) saturate(1.2);
+}
+
+.card-link {
+  display: inline-block;
+  margin-top: 0.6rem;
+  font-family: 'Computer Modern', Georgia, serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #555;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.card-link:hover {
+  color: var(--spine);
+}
+
+.card-expand-hint {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #444;
+  font-family: 'Computer Modern', Georgia, serif;
+}
+
+.card-excerpt {
+  margin-top: 1rem;
+  border-top: 1px solid #2a2a2a;
+  padding-top: 1rem;
+  animation: excerptFadeIn 0.3s ease;
+}
+
+@keyframes excerptFadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.card-excerpt-inner {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.card-excerpt-thumb {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 2px;
+  flex-shrink: 0;
+  filter: brightness(0.9) contrast(1.05);
+}
+
+.card-excerpt-text {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  line-height: 1.55;
+}
+
+.card-excerpt-title {
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.3rem;
+  font-size: 0.85rem;
+}
+
+.card-excerpt-attribution {
+  margin-top: 0.5rem;
+  font-size: 0.63rem;
+  color: #444;
+  font-style: italic;
+}
+
+/* ── HIDDEN STATE (filtering) ── */
+.event.hidden {
+  display: none;
+}
+
+/* ── MOBILE ── */
+@media (max-width: 700px) {
+  .timeline::before {
+    left: 1.5rem;
+  }
+
+  .event {
+    width: calc(100% - 3.5rem);
+    margin-left: 3.5rem !important;
+    margin-right: 0 !important;
+  }
+
+  .event.left,
+  .event.right {
+    transform: translateX(20px);
+  }
+
+  .event.visible {
+    transform: translateX(0);
+  }
+
+  .event::after {
+    left: -2.4rem !important;
+    right: auto !important;
+  }
+
+  .event::before {
+    left: -1.8rem !important;
+    right: auto !important;
+    width: 1.5rem;
+  }
+
+  /* On mobile all events are right-of-spine; hide spine years to avoid overlap */
+  .spine-year {
+    display: none;
+  }
+}
+
+/* ── BIBLIOGRAPHY ── */
+.footer-legend {
+  margin-bottom: 2rem;
+}
+
+.bibliography {
+  text-align: left;
+  max-width: 900px;
+  margin: 2rem auto 0;
+  border-top: 1px solid #333;
+  padding-top: 2rem;
+}
+
+.bib-heading {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--spine);
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+.bib-subheading {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+}
+
+.bib-section {
+  margin-bottom: 1.5rem;
+}
+
+.bib-list {
+  list-style: decimal;
+  padding-left: 1.5rem;
+  font-size: 0.72rem;
+  line-height: 1.8;
+  color: var(--text-dim);
+}
+
+.bib-list li {
+  margin-bottom: 0.1rem;
+}
+
+.bib-creator {
+  color: var(--text);
+}
+
+.bib-license {
+  font-style: italic;
+}
+
+.bib-link {
+  color: #555;
+  text-decoration: none;
+}
+
+.bib-link:hover {
+  color: var(--spine);
+}
+
+.bib-note {
+  font-size: 0.68rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+  border-top: 1px solid #222;
+  padding-top: 1rem;
+  margin-top: 0.5rem;
+}
+
+/* ── FOOTER ── */
+footer {
+  text-align: center;
+  padding: 3rem 1rem;
+  border-top: 1px solid #222;
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  font-family: 'Computer Modern', Georgia, serif;
+  letter-spacing: 0.1em;
 }
