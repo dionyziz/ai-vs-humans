@@ -38,6 +38,22 @@ export default function Timeline({ events, eras }: TimelineProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeFilter, events]);
 
+  // Era image parallax
+  useEffect(() => {
+    const images = document.querySelectorAll<HTMLImageElement>(".era-image");
+    function update() {
+      images.forEach((img) => {
+        const wrap = img.parentElement!;
+        const rect = wrap.getBoundingClientRect();
+        const ratio = (rect.top + rect.height / 2) / window.innerHeight - 0.5;
+        img.style.transform = `translateY(${ratio * 90}px)`;
+      });
+    }
+    window.addEventListener("scroll", update, { passive: true });
+    update();
+    return () => window.removeEventListener("scroll", update);
+  }, []);
+
   // Scroll animations
   useEffect(() => {
     const eventEls = document.querySelectorAll<HTMLElement>(".event");
@@ -152,7 +168,9 @@ export default function Timeline({ events, eras }: TimelineProps) {
                 Era {ERA_ROMAN[era.number - 1]} — {era.label}
               </span>
             </div>
-            <img src={era.image} alt="" className="era-image" style={era.imagePosition ? { objectPosition: era.imagePosition } : undefined} />
+            <div className="era-image-wrap">
+              <img src={era.image} alt="" className="era-image" style={era.imagePosition ? { objectPosition: era.imagePosition } : undefined} />
+            </div>
             {eraEvents.map(({ event, globalIndex, side }) => {
               const hidden = !isVisible(event);
               const classNames = [

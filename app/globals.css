@@ -232,15 +232,27 @@ header .subtitle {
   color: var(--text-dim);
 }
 
-.era-image {
-  display: block;
+.era-image-wrap {
   width: 100vw;
   height: 220px;
-  object-fit: cover;
-  object-position: center center;
   margin-left: calc(50% - 50vw);
   margin-bottom: 2rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.era-image {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 370px; /* extra height gives the parallax room to travel */
+  margin-top: calc((220px - 370px) / 2); /* vertically centre within the clip */
+  object-fit: cover;
+  object-position: center center;
   filter: grayscale(40%) brightness(0.6) sepia(20%);
+  will-change: transform;
 }
 
 /* ── EVENT CARD ── */
