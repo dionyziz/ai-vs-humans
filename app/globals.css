@@ -157,6 +157,16 @@ header .subtitle {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.filter-btn-flag {
+  width: 14px;
+  height: auto;
+  display: block;
+  flex-shrink: 0;
 }
 
 .filter-btn:hover {

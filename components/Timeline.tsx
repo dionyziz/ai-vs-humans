@@ -127,17 +127,18 @@ export default function Timeline({ events, eras }: TimelineProps) {
 
       <nav className="filters">
         {[
-          { key: "all", label: "All" },
-          { key: "machine", label: "Machine Victories" },
-          { key: "human", label: "Human Resistance" },
-          { key: "superhuman", label: "Superhuman 👑" },
-        ].map(({ key, label }) => (
+          { key: "all", label: "All", icon: null },
+          { key: "machine", label: "Machine Victories", icon: "/flag-machine.svg" },
+          { key: "human", label: "Human Resistance", icon: "/flag-human.svg" },
+          { key: "superhuman", label: "Superhuman 👑", icon: null },
+        ].map(({ key, label, icon }) => (
           <button
             key={key}
             className={`filter-btn${activeFilter === key ? " active" : ""}`}
             data-filter={key}
             onClick={() => setActiveFilter(key)}
           >
+            {icon && <img src={icon} alt="" className="filter-btn-flag" aria-hidden="true" />}
             {label}
           </button>
         ))}
