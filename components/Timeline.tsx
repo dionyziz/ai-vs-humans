@@ -130,7 +130,7 @@ export default function Timeline({ events, eras }: TimelineProps) {
           { key: "all", label: "All", icon: null },
           { key: "machine", label: "Machine Victories", icon: "/flag-machine.svg" },
           { key: "human", label: "Human Resistance", icon: "/flag-human.svg" },
-          { key: "superhuman", label: "Superhuman 👑", icon: null },
+          { key: "superhuman", label: "👑 Superhuman", icon: null },
         ].map(({ key, label, icon }) => (
           <button
             key={key}

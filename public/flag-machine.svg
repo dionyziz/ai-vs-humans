@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 105">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 119">
   <!-- Banner-shaped field: rectangle + 6 downward triangles -->
-  <path d="M0,0 H60 V90 L55,103 L50,90 L45,103 L40,90 L35,103 L30,90 L25,103 L20,90 L15,103 L10,90 L5,103 L0,90 Z"
+  <path d="M0,0 H60 V104 L55,117 L50,104 L45,117 L40,104 L35,117 L30,104 L25,117 L20,104 L15,117 L10,104 L5,117 L0,104 Z"
         fill="#7a0000"/>
 
   <!-- Outer gold border following full banner outline -->
-  <path d="M0,0 H60 V90 L55,103 L50,90 L45,103 L40,90 L35,103 L30,90 L25,103 L20,90 L15,103 L10,90 L5,103 L0,90 Z"
+  <path d="M0,0 H60 V104 L55,117 L50,104 L45,117 L40,104 L35,117 L30,104 L25,117 L20,104 L15,117 L10,104 L5,117 L0,104 Z"
         fill="none" stroke="#ffd700" stroke-width="2.5" stroke-linejoin="miter"/>
 
   <!-- Inner decorative border (rectangular portion only) -->
