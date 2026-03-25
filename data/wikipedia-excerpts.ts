@@ -12,14 +12,8 @@ export const wikipediaExcerpts: Record<string, WikipediaExcerpt> = {
   "https://en.wikipedia.org/wiki/Antikythera_mechanism": {
     title: `Antikythera mechanism`,
     extract: `The Antikythera mechanism is an ancient Greek hand-powered orrery. It is the oldest known example of an analogue computer. It could be used to predict astronomical positions and eclipses decades in advance. It could also be used to track the four-year cycle of athletic games similar to an olympiad, the cycle of the ancient Olympic Games.`,
-    thumbnail: `/images/330px-Antikythera_Fragment_A_%28Front%29.webp.png`,
+    thumbnail: `/images/330px-Antikythera_Fragment_A_(Front).webp.png`,
     url: `https://en.wikipedia.org/wiki/Antikythera_mechanism`,
-  },
-  "https://en.wikipedia.org/wiki/Pascal%27s_calculator": {
-    title: `Pascaline`,
-    extract: `The Pascaline is a mechanical calculator invented by Blaise Pascal in 1642. Pascal was led to develop a calculator by the laborious arithmetical calculations required by his father's work as the supervisor of taxes in Rouen, France. He designed the machine to add and subtract two numbers and to perform multiplication and division through repeated addition or subtraction.`,
-    thumbnail: `/images/330px-Pascaline-CnAM_823-1-IMG_1506-black.jpg`,
-    url: `https://en.wikipedia.org/wiki/Pascal%27s_calculator`,
   },
   "https://en.wikipedia.org/wiki/Mechanical_Turk": {
     title: `Mechanical Turk`,
@@ -30,7 +24,7 @@ export const wikipediaExcerpts: Record<string, WikipediaExcerpt> = {
   "https://en.wikipedia.org/wiki/Jacquard_machine": {
     title: `Jacquard machine`,
     extract: `The Jacquard machine is a device fitted to a loom that simplifies the process of manufacturing textiles with such complex patterns as brocade, damask and matelassé. The resulting ensemble of the loom and Jacquard machine is then called a Jacquard loom. The machine was patented by Joseph Marie Jacquard in 1804, based on earlier inventions by the Frenchmen Basile Bouchon (1725), Jean Baptiste Falcon (1728), and Jacques Vaucanson (1740). The machine was controlled by a "chain of cards"; a number of punched cards laced together into a continuous sequence. Multiple rows of holes were punched on each card, with one complete card corresponding to one row of the design.`,
-    thumbnail: `/images/330px-A_la_m%C3%A9moire_de_J.M._Jacquard.jpg`,
+    thumbnail: `/images/330px-A_la_mémoire_de_J.M._Jacquard.jpg`,
     url: `https://en.wikipedia.org/wiki/Jacquard_machine`,
   },
   "https://en.wikipedia.org/wiki/Luddite": {
@@ -39,11 +33,23 @@ export const wikipediaExcerpts: Record<string, WikipediaExcerpt> = {
     thumbnail: `/images/330px-Luddite.jpg`,
     url: `https://en.wikipedia.org/wiki/Luddite`,
   },
+  "https://en.wikipedia.org/wiki/Pascal%27s_calculator": {
+    title: `Pascaline`,
+    extract: `The Pascaline is a mechanical calculator invented by Blaise Pascal in 1642. Pascal was led to develop a calculator by the laborious arithmetical calculations required by his father's work as the supervisor of taxes in Rouen, France. He designed the machine to add and subtract two numbers and to perform multiplication and division through repeated addition or subtraction.`,
+    thumbnail: `/images/330px-Pascaline-CnAM_823-1-IMG_1506-black.jpg`,
+    url: `https://en.wikipedia.org/wiki/Pascal%27s_calculator`,
+  },
   "https://en.wikipedia.org/wiki/Stephenson%27s_Rocket": {
     title: `Stephenson's Rocket`,
     extract: `Stephenson's Rocket is an early steam locomotive of 0-2-2 wheel arrangement. It was built for and won the Rainhill Trials of the Liverpool and Manchester Railway (L&MR), held in October 1829 to show that improved locomotives would be more efficient than stationary steam engines.`,
-    thumbnail: `/images/330px-Stephenson%27s_Rocket_drawing.jpg`,
+    thumbnail: `/images/330px-Stephenson's_Rocket_drawing.jpg`,
     url: `https://en.wikipedia.org/wiki/Stephenson%27s_Rocket`,
+  },
+  "https://en.wikipedia.org/wiki/Frame-Breaking_Act": {
+    title: `Destruction of Stocking Frames, etc. Act 1812`,
+    extract: `The Destruction of Stocking Frames, etc. Act 1812, also known as the Frame-Breaking Act and before passage as the Frame Work Bill, was an act of the Parliament of the United Kingdom, passed by the British Government in 1812 aimed at increasing the penalties for Luddite behaviour in order to discourage it.`,
+    thumbnail: `/images/330px-Coat_of_Arms_of_the_United_Kingdom_(1801-1816).svg.png`,
+    url: `https://en.wikipedia.org/wiki/Frame-Breaking_Act`,
   },
   "https://en.wikipedia.org/wiki/Electrical_telegraph": {
     title: `Electrical telegraph`,
@@ -57,23 +63,17 @@ export const wikipediaExcerpts: Record<string, WikipediaExcerpt> = {
     thumbnail: `/images/330px-HollerithMachine.CHM.jpg`,
     url: `https://en.wikipedia.org/wiki/Tabulating_machine`,
   },
-  "https://en.wikipedia.org/wiki/ENIAC": {
-    title: `ENIAC`,
-    extract: `ENIAC was the first programmable, electronic, general-purpose digital computer, completed in 1945. Other computers had some of these features, but ENIAC was the first to have them all. It was Turing-complete and able to solve "a large class of numerical problems" through reprogramming.`,
-    thumbnail: `/images/330px-ENIAC_Penn1.jpg`,
-    url: `https://en.wikipedia.org/wiki/ENIAC`,
-  },
   "https://en.wikipedia.org/wiki/Soroban": {
     title: `Soroban`,
     extract: `The soroban  is an abacus developed in Japan. It is derived from the ancient Chinese suanpan, imported to Japan in the 14th century. Like the suanpan, the soroban is still used today, despite the proliferation of practical and affordable pocket electronic calculators.`,
     thumbnail: undefined,
     url: `https://en.wikipedia.org/wiki/Soroban`,
   },
-  "https://en.wikipedia.org/wiki/Frame-Breaking_Act": {
-    title: `Destruction of Stocking Frames, etc. Act 1812`,
-    extract: `The Destruction of Stocking Frames, etc. Act 1812, also known as the Frame-Breaking Act and before passage as the Frame Work Bill, was an act of the Parliament of the United Kingdom, passed by the British Government in 1812 aimed at increasing the penalties for Luddite behaviour in order to discourage it.`,
-    thumbnail: `/images/330px-Coat_of_Arms_of_the_United_Kingdom_%281801-1816%29.svg.png`,
-    url: `https://en.wikipedia.org/wiki/Frame-Breaking_Act`,
+  "https://en.wikipedia.org/wiki/ENIAC": {
+    title: `ENIAC`,
+    extract: `ENIAC was the first programmable, electronic, general-purpose digital computer, completed in 1945. Other computers had some of these features, but ENIAC was the first to have them all. It was Turing-complete and able to solve "a large class of numerical problems" through reprogramming.`,
+    thumbnail: `/images/330px-ENIAC_Penn1.jpg`,
+    url: `https://en.wikipedia.org/wiki/ENIAC`,
   },
   "https://en.wikipedia.org/wiki/IBM_700/7000_series": {
     title: `IBM 700/7000 series`,
@@ -81,23 +81,23 @@ export const wikipediaExcerpts: Record<string, WikipediaExcerpt> = {
     thumbnail: `/images/330px-IBM_Electronic_Data_Processing_Machine_-_GPN-2000-001881.jpg`,
     url: `https://en.wikipedia.org/wiki/IBM_700/7000_series`,
   },
+  "https://en.wikipedia.org/wiki/Pocket_calculator": {
+    title: `Calculator`,
+    extract: `A calculator is typically a portable electronic device used to perform calculations, ranging from basic arithmetic to complex mathematics.`,
+    thumbnail: `/images/330px-Casio_calculator_JS-20WK_in_201901_002.jpg`,
+    url: `https://en.wikipedia.org/wiki/Pocket_calculator`,
+  },
   "https://en.wikipedia.org/wiki/Chinook_(draughts_player)": {
     title: `Chinook (computer program)`,
     extract: `Chinook is a computer program that plays checkers. It was developed between the years 1989 to 2007 at the University of Alberta, by a team led by Jonathan Schaeffer and consisting of Rob Lake, Paul Lu, Martin Bryant, and Norman Treloar. The program's algorithms include an opening book which is a library of opening moves from games played by checkers grandmasters; a deep search algorithm; a good move evaluation function; and an end-game database for all positions with eight pieces or fewer. All of Chinook's knowledge was programmed by its creators, rather than learned using an artificial intelligence system.`,
     thumbnail: undefined,
     url: `https://en.wikipedia.org/wiki/Chinook_(draughts_player)`,
   },
-  "https://en.wikipedia.org/wiki/Deep_Blue_versus_Kasparov,_1996": {
+  "https://en.wikipedia.org/wiki/Deep_Blue_versus_Garry_Kasparov": {
     title: `Deep Blue versus Garry Kasparov`,
     extract: `Garry Kasparov, then-world champion in chess, played a pair of six-game matches against Deep Blue, a supercomputer by IBM. Kasparov won the first match, held in Philadelphia in 1996, by 4–2. Deep Blue won a 1997 rematch held in New York City by 3½–2½. The second match was the first defeat of a reigning world chess champion by a computer under tournament conditions, and was the subject of a documentary film, Game Over: Kasparov and the Machine.`,
     thumbnail: `/images/330px-Deep_Blue.jpg`,
-    url: `https://en.wikipedia.org/wiki/Deep_Blue_versus_Kasparov,_1996`,
-  },
-  "https://en.wikipedia.org/wiki/Deep_Blue_versus_Kasparov,_1997": {
-    title: `Deep Blue versus Garry Kasparov`,
-    extract: `Garry Kasparov, then-world champion in chess, played a pair of six-game matches against Deep Blue, a supercomputer by IBM. Kasparov won the first match, held in Philadelphia in 1996, by 4–2. Deep Blue won a 1997 rematch held in New York City by 3½–2½. The second match was the first defeat of a reigning world chess champion by a computer under tournament conditions, and was the subject of a documentary film, Game Over: Kasparov and the Machine.`,
-    thumbnail: `/images/330px-Deep_Blue.jpg`,
-    url: `https://en.wikipedia.org/wiki/Deep_Blue_versus_Kasparov,_1997`,
+    url: `https://en.wikipedia.org/wiki/Deep_Blue_versus_Garry_Kasparov`,
   },
   "https://en.wikipedia.org/wiki/CAPTCHA": {
     title: `CAPTCHA`,
@@ -105,11 +105,11 @@ export const wikipediaExcerpts: Record<string, WikipediaExcerpt> = {
     thumbnail: undefined,
     url: `https://en.wikipedia.org/wiki/CAPTCHA`,
   },
-  "https://en.wikipedia.org/wiki/DARPA_Grand_Challenge_(2004)": {
-    title: `DARPA Grand Challenge (2004)`,
-    extract: `Announced in 2002, the first DARPA Grand Challenge was a driverless car competition held on March 13, 2004 in the Mojave Desert region of the United States. The 150 miles (240 km) route followed Interstate 15 from right before Barstow, California to just past the California-Nevada border in Primm. None of the robot vehicles finished the route. The vehicle of Carnegie Mellon University's Red Team traveled the furthest distance, completing 11.78 km (7.32 mi) of the course. The \$1 million prize remained unclaimed.`,
-    thumbnail: `/images/330px-DARPA_Challenge_RedTeam.jpg`,
-    url: `https://en.wikipedia.org/wiki/DARPA_Grand_Challenge_(2004)`,
+  "https://en.wikipedia.org/wiki/Shazam_Entertainment": {
+    title: `Shazam (music app)`,
+    extract: `Shazam is a British application that can identify music based on a short sample played using the microphone on the device. It was created by the British company Shazam Entertainment, based in London, and has been owned by Apple since 2018. The software is available for Android, macOS, iOS, Wear OS, watchOS and as a Google Chrome extension.`,
+    thumbnail: `/images/Shazam_interface_05-13-2018.png`,
+    url: `https://en.wikipedia.org/wiki/Shazam_Entertainment`,
   },
   "https://en.wikipedia.org/wiki/Advanced_Chess": {
     title: `Advanced chess`,
@@ -117,11 +117,11 @@ export const wikipediaExcerpts: Record<string, WikipediaExcerpt> = {
     thumbnail: undefined,
     url: `https://en.wikipedia.org/wiki/Advanced_Chess`,
   },
-  "https://en.wikipedia.org/wiki/Pocket_calculator": {
-    title: `Calculator`,
-    extract: `A calculator is typically a portable electronic device used to perform calculations, ranging from basic arithmetic to complex mathematics.`,
-    thumbnail: `/images/330px-Casio_calculator_JS-20WK_in_201901_002.jpg`,
-    url: `https://en.wikipedia.org/wiki/Pocket_calculator`,
+  "https://en.wikipedia.org/wiki/DARPA_Grand_Challenge_(2004)": {
+    title: `DARPA Grand Challenge (2004)`,
+    extract: `Announced in 2002, the first DARPA Grand Challenge was a driverless car competition held on March 13, 2004 in the Mojave Desert region of the United States. The 150 miles (240 km) route followed Interstate 15 from right before Barstow, California to just past the California-Nevada border in Primm. None of the robot vehicles finished the route. The vehicle of Carnegie Mellon University's Red Team traveled the furthest distance, completing 11.78 km (7.32 mi) of the course. The \$1 million prize remained unclaimed.`,
+    thumbnail: `/images/330px-DARPA_Challenge_RedTeam.jpg`,
+    url: `https://en.wikipedia.org/wiki/DARPA_Grand_Challenge_(2004)`,
   },
   "https://en.wikipedia.org/wiki/Draughts": {
     title: `Checkers`,
@@ -129,11 +129,11 @@ export const wikipediaExcerpts: Record<string, WikipediaExcerpt> = {
     thumbnail: `/images/330px-CheckersStandard.jpg`,
     url: `https://en.wikipedia.org/wiki/Draughts`,
   },
-  "https://en.wikipedia.org/wiki/Shazam_Entertainment": {
-    title: `Shazam (music app)`,
-    extract: `Shazam is a British application that can identify music based on a short sample played using the microphone on the device. It was created by the British company Shazam Entertainment, based in London, and has been owned by Apple since 2018. The software is available for Android, macOS, iOS, Wear OS, watchOS and as a Google Chrome extension.`,
-    thumbnail: `/images/Shazam_interface_05-13-2018.png`,
-    url: `https://en.wikipedia.org/wiki/Shazam_Entertainment`,
+  "https://en.wikipedia.org/wiki/Residual_neural_network": {
+    title: `Residual neural network`,
+    extract: `A residual neural network is a deep learning architecture in which the layers learn residual functions with reference to the layer inputs. It was developed in 2015 for image recognition, and won the ImageNet Large Scale Visual Recognition Challenge of that year.`,
+    thumbnail: `/images/330px-ResBlock.png`,
+    url: `https://en.wikipedia.org/wiki/Residual_neural_network`,
   },
   "https://en.wikipedia.org/wiki/Watson_(computer)": {
     title: `IBM Watson`,
@@ -153,12 +153,6 @@ The ImageNet project is a large visual database designed for use in visual objec
     extract: `Google Translate is a multilingual neural machine translation service developed by Google to translate text, documents and websites from one language into another. It offers a website interface, a mobile app for Android and iOS, and an API that helps developers build browser extensions and software applications. As of March 2026, Google Translate supports 249 languages and language varieties at various levels. It served over 200 million people daily in May 2013, and over 500 million total users as of April 2016, with more than 100 billion words translated daily.`,
     thumbnail: `/images/330px-Google_Translate_screenshot.png`,
     url: `https://en.wikipedia.org/wiki/Google_Translate`,
-  },
-  "https://en.wikipedia.org/wiki/Residual_neural_network": {
-    title: `Residual neural network`,
-    extract: `A residual neural network is a deep learning architecture in which the layers learn residual functions with reference to the layer inputs. It was developed in 2015 for image recognition, and won the ImageNet Large Scale Visual Recognition Challenge of that year.`,
-    thumbnail: `/images/330px-ResBlock.png`,
-    url: `https://en.wikipedia.org/wiki/Residual_neural_network`,
   },
   "https://en.wikipedia.org/wiki/AlphaGo_versus_Lee_Sedol": {
     title: `AlphaGo versus Lee Sedol`,
@@ -187,8 +181,14 @@ The ImageNet project is a large visual database designed for use in visual objec
   "https://en.wikipedia.org/wiki/Artificial_intelligence_in_healthcare": {
     title: `Artificial intelligence in healthcare`,
     extract: `Artificial intelligence in healthcare is the application of artificial intelligence (AI) to analyze and understand complex medical and healthcare data. In some cases, it can exceed or augment human capabilities by providing better or faster ways to diagnose, treat, or prevent disease.`,
-    thumbnail: `/images/330px-X-ray_of_hand%2C_where_bone_age_is_automatically_found_by_BoneXpert_software.jpg`,
+    thumbnail: `/images/330px-X-ray_of_hand,_where_bone_age_is_automatically_found_by_BoneXpert_software.jpg`,
     url: `https://en.wikipedia.org/wiki/Artificial_intelligence_in_healthcare`,
+  },
+  "https://en.wikipedia.org/wiki/GPT-3": {
+    title: `GPT-3`,
+    extract: `Generative Pre-trained Transformer 3 (GPT-3) is a large language model released by OpenAI in 2020.`,
+    thumbnail: `/images/330px-OpenAI_logo_2025_(symbol).svg.png`,
+    url: `https://en.wikipedia.org/wiki/GPT-3`,
   },
   "https://en.wikipedia.org/wiki/OpenAI_Five": {
     title: `OpenAI Five`,
@@ -203,17 +203,11 @@ OpenAI Five is a computer program by OpenAI that plays the five-on-five video ga
     thumbnail: undefined,
     url: `https://en.wikipedia.org/wiki/AlphaStar_(software)`,
   },
-  "https://en.wikipedia.org/wiki/GPT-3": {
-    title: `GPT-3`,
-    extract: `Generative Pre-trained Transformer 3 (GPT-3) is a large language model released by OpenAI in 2020.`,
-    thumbnail: `/images/330px-OpenAI_logo_2025_%28symbol%29.svg.png`,
-    url: `https://en.wikipedia.org/wiki/GPT-3`,
-  },
-  "https://en.wikipedia.org/wiki/Midjourney": {
-    title: `Midjourney`,
-    extract: `Midjourney is a generative artificial intelligence program and service created and hosted by the San Francisco–based "independent research lab" Midjourney, Inc. Midjourney generates images from natural language descriptions, called prompts, similar to OpenAI's DALL-E and Stability AI's Stable Diffusion. It is one of the technologies of the AI boom.`,
-    thumbnail: `/images/330px-Midjourney_logo.svg.png`,
-    url: `https://en.wikipedia.org/wiki/Midjourney`,
+  "https://en.wikipedia.org/wiki/ChatGPT": {
+    title: `ChatGPT`,
+    extract: `ChatGPT is a generative artificial intelligence chatbot developed by OpenAI. It was released in November 2022. It uses generative pre-trained transformers (GPTs), such as GPT-5.2, to generate text, speech, and images in response to user prompts. It is credited with accelerating the AI boom, an ongoing period marked by rapid investment and public attention toward the field of artificial intelligence (AI). OpenAI operates the service on a freemium model. Users can interact with ChatGPT through text, audio, and image prompts.`,
+    thumbnail: `/images/330px-OpenAI_logo_2025_(symbol).svg.png`,
+    url: `https://en.wikipedia.org/wiki/ChatGPT`,
   },
   "https://en.wikipedia.org/wiki/Riffusion": {
     title: `Riffusion`,
@@ -221,29 +215,23 @@ OpenAI Five is a computer program by OpenAI that plays the five-on-five video ga
     thumbnail: `/images/330px-AI-generated_audio_featuring_bossa_nova_music_with_electric_guitar.png`,
     url: `https://en.wikipedia.org/wiki/Riffusion`,
   },
-  "https://en.wikipedia.org/wiki/ChatGPT": {
-    title: `ChatGPT`,
-    extract: `ChatGPT is a generative artificial intelligence chatbot developed by OpenAI. It was released in November 2022. It uses generative pre-trained transformers (GPTs), such as GPT-5.2, to generate text, speech, and images in response to user prompts. It is credited with accelerating the AI boom, an ongoing period marked by rapid investment and public attention toward the field of artificial intelligence (AI). OpenAI operates the service on a freemium model. Users can interact with ChatGPT through text, audio, and image prompts.`,
-    thumbnail: `/images/330px-OpenAI_logo_2025_%28symbol%29.svg.png`,
-    url: `https://en.wikipedia.org/wiki/ChatGPT`,
-  },
   "https://en.wikipedia.org/wiki/Bar_examination": {
     title: `Bar examination`,
     extract: `A bar examination is an examination administered by the bar association of a jurisdiction that a lawyer must pass in order to be admitted to the bar of that jurisdiction.`,
     thumbnail: undefined,
     url: `https://en.wikipedia.org/wiki/Bar_examination`,
   },
+  "https://en.wikipedia.org/wiki/Midjourney": {
+    title: `Midjourney`,
+    extract: `Midjourney is a generative artificial intelligence program and service created and hosted by the San Francisco–based "independent research lab" Midjourney, Inc. Midjourney generates images from natural language descriptions, called prompts, similar to OpenAI's DALL-E and Stability AI's Stable Diffusion. It is one of the technologies of the AI boom.`,
+    thumbnail: `/images/330px-Midjourney_logo.svg.png`,
+    url: `https://en.wikipedia.org/wiki/Midjourney`,
+  },
   "https://en.wikipedia.org/wiki/GPT-4": {
     title: `GPT-4`,
     extract: `Generative Pre-trained Transformer 4 (GPT-4) is a large language model developed by OpenAI and the fourth in its series of GPT foundation models.`,
     thumbnail: `/images/GPT-4_icon.png`,
     url: `https://en.wikipedia.org/wiki/GPT-4`,
-  },
-  "https://en.wikipedia.org/wiki/Mata_v._Avianca,_Inc.": {
-    title: `Mata v. Avianca, Inc.`,
-    extract: `Mata v. Avianca, Inc. was a U.S. District Court for the Southern District of New York case in which the Court dismissed a personal injury case against the airline Avianca and issued a \$5,000 fine to the plaintiffs' lawyers who had submitted fake precedents generated by ChatGPT in their legal briefs.`,
-    thumbnail: `/images/330px-USDCSDNY.svg.png`,
-    url: `https://en.wikipedia.org/wiki/Mata_v._Avianca,_Inc.`,
   },
   "https://en.wikipedia.org/wiki/2023_Writers_Guild_of_America_strike": {
     title: `2023 Writers Guild of America strike`,
@@ -254,7 +242,7 @@ OpenAI Five is a computer program by OpenAI that plays the five-on-five video ga
   "https://en.wikipedia.org/wiki/Geoffrey_Hinton": {
     title: `Geoffrey Hinton`,
     extract: `Geoffrey Everest Hinton is a British-Canadian computer scientist, cognitive scientist, cognitive psychologist and Nobel Prize laureate known for his work on artificial neural networks, which earned him the title "the Godfather of AI". He is University Professor Emeritus at the University of Toronto.`,
-    thumbnail: `/images/330px-Geoffrey_E._Hinton%2C_2024_Nobel_Prize_Laureate_in_Physics_%28cropped1%29.jpg`,
+    thumbnail: `/images/330px-Geoffrey_E._Hinton,_2024_Nobel_Prize_Laureate_in_Physics_(cropped1).jpg`,
     url: `https://en.wikipedia.org/wiki/Geoffrey_Hinton`,
   },
   "https://en.wikipedia.org/wiki/Artificial_Intelligence_Act": {
@@ -275,11 +263,17 @@ OpenAI Five is a computer program by OpenAI that plays the five-on-five video ga
     thumbnail: undefined,
     url: `https://en.wikipedia.org/wiki/AlphaFold`,
   },
-  "https://en.wikipedia.org/wiki/AlphaProof": {
-    title: `International Mathematical Olympiad`,
-    extract: `The International Mathematical Olympiad (IMO) is a mathematical olympiad for pre-university students, and is the oldest of the International Science Olympiads. It is widely regarded as the most prestigious mathematical competition in the world. The first IMO was held in Romania in 1959. It has since been held annually, except in 1980. More than 100 countries participate. Each country sends a team of up to six students, plus one team leader, one deputy leader, and observers.`,
-    thumbnail: `/images/330px-IMO_logo.svg.png`,
-    url: `https://en.wikipedia.org/wiki/AlphaProof`,
+  "https://en.wikipedia.org/wiki/Mata_v._Avianca,_Inc.": {
+    title: `Mata v. Avianca, Inc.`,
+    extract: `Mata v. Avianca, Inc. was a U.S. District Court for the Southern District of New York case in which the Court dismissed a personal injury case against the airline Avianca and issued a \$5,000 fine to the plaintiffs' lawyers who had submitted fake precedents generated by ChatGPT in their legal briefs.`,
+    thumbnail: `/images/330px-USDCSDNY.svg.png`,
+    url: `https://en.wikipedia.org/wiki/Mata_v._Avianca,_Inc.`,
+  },
+  "https://en.wikipedia.org/wiki/AlphaGeometry": {
+    title: `AlphaGeometry`,
+    extract: `AlphaGeometry is an artificial intelligence (AI) program that can solve hard problems in Euclidean geometry. The system comprises a data-driven large language model (LLM) and a rule-based symbolic engine. It was developed by DeepMind, a subsidiary of Google. The program solved 25 geometry problems out of 30 from the International Mathematical Olympiad (IMO) under competition time limits—a performance almost as good as the average human gold medallist. For comparison, the previous AI program, called Wu's method, managed to solve only 10 problems.`,
+    thumbnail: undefined,
+    url: `https://en.wikipedia.org/wiki/AlphaGeometry`,
   },
   "https://en.wikipedia.org/wiki/Automated_theorem_proving": {
     title: `Automated theorem proving`,
@@ -287,22 +281,23 @@ OpenAI Five is a computer program by OpenAI that plays the five-on-five video ga
     thumbnail: undefined,
     url: `https://en.wikipedia.org/wiki/Automated_theorem_proving`,
   },
-  "https://en.wikipedia.org/wiki/2024_Nobel_Prize_in_Physics": {
-    title: `Demis Hassabis`,
-    extract: `Sir Demis Hassabis is a British artificial intelligence (AI) researcher and entrepreneur. He is the chief executive officer and co-founder of Google DeepMind and Isomorphic Labs, and a UK Government AI Adviser. In 2024, Hassabis and John M. Jumper were jointly awarded the Nobel Prize in Chemistry for their AI research contributions for protein structure prediction.`,
-    thumbnail: `/images/330px-Demis_Hassabis%2C_2024_Nobel_Prize_Laureate_in_Chemistry_7_%28cropped%29.jpg`,
-    url: `https://en.wikipedia.org/wiki/2024_Nobel_Prize_in_Physics`,
-  },
-  "https://en.wikipedia.org/wiki/GitHub_Copilot": {
-    title: `GitHub Copilot`,
-    extract: `GitHub Copilot is a code completion and programming AI-assistant developed by GitHub and OpenAI that assists users of Visual Studio Code, Visual Studio, Neovim, Eclipse and JetBrains integrated development environments (IDEs) by autocompleting code. Currently available by subscription to individual developers and to businesses, the generative artificial intelligence software was first announced by GitHub on 29 June 2021. Users can choose the large language model used for generation.`,
+  "https://en.wikipedia.org/wiki/2024_Nobel_Prizes": {
+    title: `2024 Nobel Prizes`,
+    extract: `
+The 2024 Nobel Prizes were awarded by the Nobel Foundation, based in Sweden. Six categories were awarded: Physics, Chemistry, Physiology or Medicine, Literature, Peace, and Economic Sciences. The winners in each category were announced from October 7 to October 14.`,
     thumbnail: undefined,
-    url: `https://en.wikipedia.org/wiki/GitHub_Copilot`,
+    url: `https://en.wikipedia.org/wiki/2024_Nobel_Prizes`,
   },
   "https://en.wikipedia.org/wiki/Intelligent_agent": {
     title: `Intelligent agent`,
     extract: `In artificial intelligence, an intelligent agent is an entity that perceives its environment, takes actions autonomously to achieve goals, and may improve its performance through machine learning or by acquiring knowledge. AI textbooks define artificial intelligence as the "study and design of intelligent agents," emphasizing that goal-directed behavior is central to intelligence.`,
     thumbnail: `/images/330px-IntelligentAgent-SimpleReflex.png`,
     url: `https://en.wikipedia.org/wiki/Intelligent_agent`,
+  },
+  "https://en.wikipedia.org/wiki/GitHub_Copilot": {
+    title: `GitHub Copilot`,
+    extract: `GitHub Copilot is a code completion and programming AI-assistant developed by GitHub and OpenAI that assists users of Visual Studio Code, Visual Studio, Neovim, Eclipse and JetBrains integrated development environments (IDEs) by autocompleting code. Currently available by subscription to individual developers and to businesses, the generative artificial intelligence software was first announced by GitHub on 29 June 2021. Users can choose the large language model used for generation.`,
+    thumbnail: undefined,
+    url: `https://en.wikipedia.org/wiki/GitHub_Copilot`,
   },
 };

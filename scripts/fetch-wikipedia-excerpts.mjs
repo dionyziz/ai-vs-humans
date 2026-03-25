@@ -25,8 +25,7 @@ const LINKS = [
   "https://en.wikipedia.org/wiki/IBM_700/7000_series",
   "https://en.wikipedia.org/wiki/Pocket_calculator",
   "https://en.wikipedia.org/wiki/Chinook_(draughts_player)",
-  "https://en.wikipedia.org/wiki/Deep_Blue_versus_Kasparov,_1996",
-  "https://en.wikipedia.org/wiki/Deep_Blue_versus_Kasparov,_1997",
+  "https://en.wikipedia.org/wiki/Deep_Blue_versus_Garry_Kasparov",
   "https://en.wikipedia.org/wiki/Shazam_Entertainment",
   "https://en.wikipedia.org/wiki/CAPTCHA",
   "https://en.wikipedia.org/wiki/DARPA_Grand_Challenge_(2004)",
@@ -55,19 +54,15 @@ const LINKS = [
   "https://en.wikipedia.org/wiki/Artificial_Intelligence_Act",
   "https://en.wikipedia.org/wiki/AI_Safety_Summit",
   "https://en.wikipedia.org/wiki/AlphaFold",
-  "https://en.wikipedia.org/wiki/AlphaProof",
+  "https://en.wikipedia.org/wiki/AlphaGeometry",
   "https://en.wikipedia.org/wiki/Automated_theorem_proving",
-  "https://en.wikipedia.org/wiki/2024_Nobel_Prize_in_Physics",
+  "https://en.wikipedia.org/wiki/2024_Nobel_Prizes",
   "https://en.wikipedia.org/wiki/GitHub_Copilot",
   "https://en.wikipedia.org/wiki/Intelligent_agent",
 ];
 
 // Fallback article titles for URLs whose titles don't resolve via the summary API
 const FALLBACK_TITLES = {
-  "https://en.wikipedia.org/wiki/Deep_Blue_versus_Kasparov,_1996": "Deep_Blue_versus_Garry_Kasparov",
-  "https://en.wikipedia.org/wiki/Deep_Blue_versus_Kasparov,_1997": "Deep_Blue_versus_Garry_Kasparov",
-  "https://en.wikipedia.org/wiki/AlphaProof": "International_Mathematical_Olympiad",
-  "https://en.wikipedia.org/wiki/2024_Nobel_Prize_in_Physics": "Demis_Hassabis",
 };
 
 function titleFromUrl(url) {
@@ -82,10 +77,15 @@ async function fetchSummary(url) {
   });
   if (!res.ok) throw new Error(`HTTP ${res.status} for ${title}`);
   const data = await res.json();
+  const thumbUrl = data.thumbnail?.source ?? null;
+  // Convert remote thumbnail URL to decoded local path for public/images/
+  const localThumb = thumbUrl
+    ? `/images/${decodeURIComponent(thumbUrl.split("/").pop())}`
+    : null;
   return {
     title: data.title ?? title,
     extract: data.extract ?? "",
-    thumbnail: data.thumbnail?.source ?? null,
+    thumbnail: localThumb,
     url,
   };
 }
