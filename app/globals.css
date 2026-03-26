@@ -595,9 +595,22 @@ header .subtitle {
     width: 1.5rem;
   }
 
-  /* On mobile all events are right-of-spine; hide spine years to avoid overlap */
+  .spine-dot {
+    left: calc(1.5rem - 6px);
+  }
+
+  /* On mobile all events are right-of-spine; hide spine years, show in-card year instead */
   .spine-year {
     display: none;
+  }
+
+  .card-year {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--spine);
+    font-family: 'Computer Modern', Georgia, serif;
   }
 }
 
